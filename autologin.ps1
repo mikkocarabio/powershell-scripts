@@ -17,7 +17,7 @@ function Option1 {
     Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'DefaultDomainName' -Value $domain
     Write-Host "Successfully added autologin registry keys!"
     Write-Host "Username: $username"
-    Write-Host "DomainName: CHANGEME"
+    Write-Host "DomainName: $domain"
     Write-Host "AutoAdminLogon: 1"
     Write-Host "`nPress any key to continue..."
     $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
