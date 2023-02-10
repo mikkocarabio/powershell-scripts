@@ -8,12 +8,13 @@ function Option1 {
     Write-Host "You selected option 1"
     $username = Read-Host -Prompt "Enter the username for auto-login"
     $password = Read-Host -Prompt "Enter the password for auto-login" -AsSecureString
+    $domain = Read-Host - Prompt "Enter the domain name"
     $password = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($password))
 
     Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'DefaultUserName' -Value $username
     Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'DefaultPassword' -Value $password
     Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'AutoAdminLogon' -Value '1'
-    Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'DefaultDomainName' -Value 'CHANGEME'
+    Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'DefaultDomainName' -Value $domain
     Write-Host "Successfully added autologin registry keys!"
     Write-Host "Username: $username"
     Write-Host "DomainName: CHANGEME"
